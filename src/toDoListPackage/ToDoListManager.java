@@ -6,14 +6,14 @@ public class ToDoListManager {
 
 	private static ArrayList<ToDoList> toDoLists = new ArrayList<ToDoList>();
 	
-	public void createNewToDoList(String listName) {
+	public static void createNewToDoList(String listName) {
 		
 		ToDoList list = new ToDoList(listName);
 		
 		addToDoListToArrayList(list);
 	} 
 	
-	private void addToDoListToArrayList(ToDoList list) {
+	private static void addToDoListToArrayList(ToDoList list) {
 		
 		toDoLists.add(list);
 	}
