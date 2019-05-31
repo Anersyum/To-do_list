@@ -1,6 +1,7 @@
 package toDoListPackage;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ToDoList {
 
@@ -20,11 +21,6 @@ public class ToDoList {
 	public void setListName(String listName) {
 
 		this.listName = listName;
-	}
-
-	public void addNewTask(Task task) {
-
-		this.tasks.add(task);
 	}
 
 	public ArrayList<Task> getTaskList() {
@@ -87,5 +83,23 @@ public class ToDoList {
 	public int getNumberOfTasks() {
 		
 		return this.tasks.size();
+	}
+	
+	public void createNewTask(String taskName, String taskDescription, Date dueDate) {
+		
+		Task task = new Task(taskName, taskDescription, dueDate);
+		
+		this.tasks.add(task);
+		
+		System.out.println("Task successfully added!\n");
+	}
+	
+	public void createNewTask(String taskName, String taskDescription, Date dueDate, String tag) {
+		
+		Task task = new Task(taskName, taskDescription, dueDate, tag);
+		
+		this.tasks.add(task);
+		
+		System.out.println("Task successfully added!\n");
 	}
 }
