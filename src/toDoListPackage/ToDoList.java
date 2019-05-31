@@ -27,33 +27,31 @@ public class ToDoList {
 		this.tasks.add(task);
 	}
 
-	public void showAllTasks() {
-
-		for (Task task : this.tasks) {
-
-			System.out.println(task.getTaskName());
-		}
+	public ArrayList<Task> getTaskList() {
+		
+		return this.tasks;
 	}
 
-	public void showUnfinishedTasks() {
+	public ArrayList<Task> getUnfinishedTasks() {
 
-		for (Task task : this.tasks) {
-
-			if (!task.isFinished())
-				System.out.println(task.getTaskName());
-		}
+		ArrayList<Task> listOfUnfinishedTasks = new ArrayList<Task>();
+		
+		tasks.forEach(task ->
+				{if (!task.isFinished()) listOfUnfinishedTasks.add(task);});
+		
+		return listOfUnfinishedTasks;
 	}
 
-	public void showFinishedTasks() {
+	public ArrayList<Task> getFinishedTasks() {
 
-		for (Task task : this.tasks) {
-
-			if (task.isFinished())
-				System.out.println(task.getTaskName());
-		}
+		ArrayList<Task> listOfFinishedTasks = new ArrayList<Task>();
+		
+		tasks.forEach(task ->
+				{if (task.isFinished()) listOfFinishedTasks.add(task);});
+		
+		return listOfFinishedTasks;
 	}
 
-	// the next two methods should be rewritten with lambda expressions or maybe not we'll see
 	public void markTaskAsFinished(Task task) {
 
 		task.setFinished(true);
@@ -64,10 +62,9 @@ public class ToDoList {
 		task.setFinished(false);
 	}
 
-	public void showUnfinishedTasksByDueDate() {
+	public void sortTasksByDueDate() {
 
 		this.tasks.sort((task1, task2) -> task1.getDueDate().compareTo(task2.getDueDate()));
-		this.tasks.forEach(task -> System.out.println(task.getTaskName()));
 	}
 
 	public Task getTaskByTaskName(String taskName) {
@@ -77,30 +74,18 @@ public class ToDoList {
 	}
 
 
-	public void showTasksWithTheTag(String tag) {
+	public ArrayList<Task> getTasksWithTheTag(String tag) {
 
-		this.tasks.forEach(task -> System.out.println(task.getTag().equals(tag) ? task.getTaskName() : ""));
-	}
-	
-	public void sortAndShowUnfinishedTasksByDueDate() {
+		ArrayList<Task> tasksWithTheDesiredTag = new ArrayList<Task>();
 		
-		this.tasks.sort((task1, task2) -> task1.getDueDate().compareTo(task2.getDueDate()));
+		this.tasks.forEach(task -> 
+			{if (task.getTag().equals(tag)) tasksWithTheDesiredTag.add(task);});
 		
-		for (Task task : this.tasks) {
-			
-			if (!task.isFinished())
-				System.out.println(task.getTaskName());
-		}
+		return tasksWithTheDesiredTag;
 	}
 	
 	public int getNumberOfTasks() {
 		
 		return this.tasks.size();
-	}
-	
-	//just for testing purposes
-	public ArrayList<Task> getTaskList() {
-		
-		return this.tasks;
 	}
 }
