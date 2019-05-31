@@ -12,7 +12,7 @@ public class ToDoListManager {
 		
 		addToDoListToArrayList(list);
 		
-		System.out.println("Your list has been created!");
+		System.out.println("Your list has been created!\n");
 	} 
 	
 	private static void addToDoListToArrayList(ToDoList list) {

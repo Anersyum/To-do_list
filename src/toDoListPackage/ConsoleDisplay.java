@@ -7,10 +7,11 @@ public class ConsoleDisplay {
 		System.out.println("To Do list:"
 				+ "\n1. Create new to do list"
 				+ "\n2. Create new task"
-				+ "\n3. Show unfinshed tasks"
-				+ "\n4. Show finished tasks"
-				+ "\n5. Finish task"
-				+ "\n6. Unfinish task"
+				+ "\n3. Show all tasks"
+				+ "\n4. Show unfinshed tasks"
+				+ "\n5. Show finished tasks"
+				+ "\n6. Finish task"
+				+ "\n7. Unfinish task"
 				+ "\n0. Exit");
 	}
 	

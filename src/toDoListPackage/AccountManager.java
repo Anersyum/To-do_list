@@ -12,7 +12,7 @@ public class AccountManager {
 		
 		addAccountToAccountsList(newAccout);
 		
-		System.out.println("Your account has been created!");
+		System.out.println("Your account has been created!\n");
 	}
 	
 	private static void addAccountToAccountsList(Account account) {

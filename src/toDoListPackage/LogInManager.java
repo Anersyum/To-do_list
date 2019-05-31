@@ -6,7 +6,7 @@ public class LogInManager {
 		
 		if (isValidLogin(email, password)) {
 			
-			System.out.println("You have been successfully logged in!");
+			System.out.println("You have been successfully logged in!\n");
 			
 			return AccountManager.getAccount(email, password);
 		}

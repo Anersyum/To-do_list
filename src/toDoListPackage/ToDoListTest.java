@@ -18,17 +18,12 @@ public class ToDoListTest {
 
 		ToDoListManager.createNewToDoList(list1Name);
 		ToDoListManager.createNewToDoList(list2Name);
-
-		Task task1 = new Task("Task1", "Some desc", new Date(System.currentTimeMillis() - 20300));
-		Task task2 = new Task("Task2", "Some desc", new Date(System.currentTimeMillis()), "tag");
-		Task task3 = new Task("Task3", "Some desc", new Date(System.currentTimeMillis()));
-		Task task4 = new Task("Task4", "Some desc", new Date(System.currentTimeMillis()), "tag");
 		
-		ToDoListManager.getToDoList(list1Name).addNewTask(task1);
-		ToDoListManager.getToDoList(list1Name).addNewTask(task2);
+		ToDoListManager.getToDoList(list1Name).createNewTask("Task1", "Some desc", new Date(System.currentTimeMillis() - 20300));
+		ToDoListManager.getToDoList(list1Name).createNewTask("Task2", "Some desc", new Date(System.currentTimeMillis()), "tag");
 
-		ToDoListManager.getToDoList(list2Name).addNewTask(task3);
-		ToDoListManager.getToDoList(list2Name).addNewTask(task4);
+		ToDoListManager.getToDoList(list2Name).createNewTask("Task3", "Some desc", new Date(System.currentTimeMillis()));
+		ToDoListManager.getToDoList(list2Name).createNewTask("Task4", "Some desc", new Date(System.currentTimeMillis()), "tag");
 
 	}
 
