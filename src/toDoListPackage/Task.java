@@ -70,4 +70,16 @@ public class Task {
 		
 		this.dueDate = dueDate;
 	}
+	
+	public String getTaskInfo() {
+		
+		String info = new String();
+		
+		info = "Task name: " + this.taskName 
+				+ "\nTask description: " + this.taskDescription
+				+ "\nTag: " + this.tag
+				+ "\nDue date: " + this.dueDate;
+		
+		return info;
+	}
 }
