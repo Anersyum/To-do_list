@@ -24,7 +24,7 @@ public class AccountManager {
 		
 		for (Account account : listOfAccounts) {
 			
-			if (account.getPassword().equals(password)) {
+			if (account.getPassword().equals(password) && account.getEmail().equals(email)) {
 				
 				return account;
 			}
