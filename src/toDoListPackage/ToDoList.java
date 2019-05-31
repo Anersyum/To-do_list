@@ -93,4 +93,9 @@ public class ToDoList {
 				System.out.println(task.getTaskName());
 		}
 	}
+	
+	public int getNumberOfTasks() {
+		
+		return tasks.size();
+	}
 }

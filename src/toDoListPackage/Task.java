@@ -5,7 +5,7 @@ import java.util.Date;
 public class Task {
 
 	private String taskName, taskDescription, tag;
-	private boolean isFinished;
+	private boolean finished;
 	private Date dueDate;
 	
 	public Task(String taskName, String taskDescription, Date dueDate) {
@@ -53,12 +53,12 @@ public class Task {
 
 	public boolean isFinished() {
 		
-		return isFinished;
+		return finished;
 	}
 
 	public void setFinished(boolean isFinished) {
 		
-		this.isFinished = isFinished;
+		this.finished = isFinished;
 	}
 
 	public Date getDueDate() {
