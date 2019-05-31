@@ -3,7 +3,7 @@ package toDoListPackage;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Validator {
+public class InputValidator {
 
 	public static int checkInput(Scanner input) {
 
