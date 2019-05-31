@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Task {
 
-	private String taskName, taskDescription, tag;
+	private String taskName, taskDescription, tag = "";
 	private boolean finished;
 	private Date dueDate;
 	
