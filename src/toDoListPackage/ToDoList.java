@@ -24,12 +24,12 @@ public class ToDoList {
 
 	public void addNewTask(Task task) {
 
-		tasks.add(task);
+		this.tasks.add(task);
 	}
 
 	public void showAllTasks() {
 
-		for (Task task : tasks) {
+		for (Task task : this.tasks) {
 
 			System.out.println(task.getTaskName());
 		}
@@ -37,7 +37,7 @@ public class ToDoList {
 
 	public void showUnfinishedTasks() {
 
-		for (Task task : tasks) {
+		for (Task task : this.tasks) {
 
 			if (!task.isFinished())
 				System.out.println(task.getTaskName());
@@ -46,7 +46,7 @@ public class ToDoList {
 
 	public void showFinishedTasks() {
 
-		for (Task task : tasks) {
+		for (Task task : this.tasks) {
 
 			if (task.isFinished())
 				System.out.println(task.getTaskName());
@@ -66,13 +66,13 @@ public class ToDoList {
 
 	public void showUnfinishedTasksByDueDate() {
 
-		tasks.sort((task1, task2) -> task1.getDueDate().compareTo(task2.getDueDate()));
-		tasks.forEach(task -> System.out.println(task.getTaskName()));
+		this.tasks.sort((task1, task2) -> task1.getDueDate().compareTo(task2.getDueDate()));
+		this.tasks.forEach(task -> System.out.println(task.getTaskName()));
 	}
 
 	public Task getTaskByTaskName(String taskName) {
 
-		Task tasky = tasks.stream().filter(task -> task.getTaskName().equals(taskName)).findFirst().orElse(null);
+		Task tasky = this.tasks.stream().filter(task -> task.getTaskName().equals(taskName)).findFirst().orElse(null);
 
 		return tasky;
 	}
@@ -80,14 +80,14 @@ public class ToDoList {
 
 	public void showTasksWithTheTag(String tag) {
 
-		tasks.forEach(task -> System.out.println(task.getTag().equals(tag) ? task.getTaskName() : ""));
+		this.tasks.forEach(task -> System.out.println(task.getTag().equals(tag) ? task.getTaskName() : ""));
 	}
 	
 	public void sortAndShowUnfinishedTasksByDueDate() {
 		
-		tasks.sort((task1, task2) -> task1.getDueDate().compareTo(task2.getDueDate()));
+		this.tasks.sort((task1, task2) -> task1.getDueDate().compareTo(task2.getDueDate()));
 		
-		for (Task task : tasks) {
+		for (Task task : this.tasks) {
 			
 			if (!task.isFinished())
 				System.out.println(task.getTaskName());
@@ -96,6 +96,6 @@ public class ToDoList {
 	
 	public int getNumberOfTasks() {
 		
-		return tasks.size();
+		return this.tasks.size();
 	}
 }
