@@ -38,4 +38,12 @@ public class AccountTest {
 		
 		assertEquals("Anersyum", account.getUserName());
 	}
+	
+	@Test
+	public void shouldThrowErrorIfLoginIsInvalid() {
+		
+		Account account = LogInManager.logIn("alexilaiho467@gmail.com", "Pas_word");
+		
+		assertEquals("DjChupolini", account.getUserName());
+	}
 }
