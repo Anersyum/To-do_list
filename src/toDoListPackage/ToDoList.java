@@ -72,9 +72,8 @@ public class ToDoList {
 
 	public Task getTaskByTaskName(String taskName) {
 
-		Task tasky = this.tasks.stream().filter(task -> task.getTaskName().equals(taskName)).findFirst().orElse(null);
-
-		return tasky;
+		return this.tasks.stream().filter(task -> task.getTaskName().equals(taskName))
+					.findFirst().orElse(null);
 	}
 
 
@@ -97,5 +96,11 @@ public class ToDoList {
 	public int getNumberOfTasks() {
 		
 		return this.tasks.size();
+	}
+	
+	//just for testing purposes
+	public ArrayList<Task> getTaskList() {
+		
+		return this.tasks;
 	}
 }

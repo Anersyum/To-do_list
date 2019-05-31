@@ -23,7 +23,7 @@ public class Task {
 
 	public String getTaskName() {
 		
-		return taskName;
+		return this.taskName;
 	}
 
 	public void setTaskName(String taskName) {
@@ -33,7 +33,7 @@ public class Task {
 
 	public String getTaskDescription() {
 		
-		return taskDescription;
+		return this.taskDescription;
 	}
 
 	public void setTaskDescription(String taskDescription) {
@@ -43,7 +43,7 @@ public class Task {
 
 	public String getTag() {
 		
-		return tag;
+		return this.tag;
 	}
 
 	public void setTag(String tag) {
@@ -53,7 +53,7 @@ public class Task {
 
 	public boolean isFinished() {
 		
-		return finished;
+		return this.finished;
 	}
 
 	public void setFinished(boolean isFinished) {
@@ -63,7 +63,7 @@ public class Task {
 
 	public Date getDueDate() {
 		
-		return dueDate;
+		return this.dueDate;
 	}
 
 	public void setDueDate(Date dueDate) {
