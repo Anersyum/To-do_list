@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class InputValidator {
 
-	public static int checkInput(Scanner input) {
+	public static int checkInput(Scanner input, int minInput, int maxInput) {
 
 		int consoleChoice = 0;
 
@@ -14,7 +14,7 @@ public class InputValidator {
 			try {
 				consoleChoice = input.nextInt();
 
-				if (consoleChoice < 0 || consoleChoice > 5) {
+				if (consoleChoice < minInput || consoleChoice > maxInput) {
 
 					System.out.println("That's not a valid input! Try again:");
 					continue;
