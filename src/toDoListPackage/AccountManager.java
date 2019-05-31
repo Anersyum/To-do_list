@@ -33,4 +33,9 @@ public class AccountManager {
 		return null;
 	}
 	
+	public static ArrayList<Account> getAccountList() {
+		
+		return listOfAccounts;
+	}
+	
 }

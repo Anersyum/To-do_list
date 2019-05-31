@@ -23,4 +23,9 @@ public class ToDoListManager {
 		return toDoLists.stream().filter(list -> list.getListName().equals(listName))
 					.findFirst().orElse(null);
 	}
+	
+	public static ArrayList<ToDoList> getToDoLists() {
+		
+		return toDoLists;
+	}
 }
