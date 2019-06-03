@@ -2,9 +2,8 @@ package toDoListPackage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,11 +18,11 @@ public class ToDoListTest {
 		ToDoListManager.createNewToDoList(list1Name);
 		ToDoListManager.createNewToDoList(list2Name);
 		
-		ToDoListManager.getToDoList(list1Name).createNewTask("Task1", "Some desc", new Date(System.currentTimeMillis() - 20300));
-		ToDoListManager.getToDoList(list1Name).createNewTask("Task2", "Some desc", new Date(System.currentTimeMillis()), "tag");
+		ToDoListManager.getToDoList(list1Name).createNewTask("Task1", "Some desc", LocalDate.now());
+		ToDoListManager.getToDoList(list1Name).createNewTask("Task2", "Some desc", LocalDate.of(2018, 12, 18), "tag");
 
-		ToDoListManager.getToDoList(list2Name).createNewTask("Task3", "Some desc", new Date(System.currentTimeMillis()));
-		ToDoListManager.getToDoList(list2Name).createNewTask("Task4", "Some desc", new Date(System.currentTimeMillis()), "tag");
+		ToDoListManager.getToDoList(list2Name).createNewTask("Task3", "Some desc", LocalDate.now());
+		ToDoListManager.getToDoList(list2Name).createNewTask("Task4", "Some desc", LocalDate.now(), "tag");
 
 	}
 

@@ -1,21 +1,21 @@
 package toDoListPackage;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Task {
 
 	private String taskName, taskDescription, tag = "";
 	private boolean finished;
-	private Date dueDate;
+	private LocalDate dueDate;
 	
-	public Task(String taskName, String taskDescription, Date dueDate) {
+	public Task(String taskName, String taskDescription, LocalDate dueDate) {
 		
 		this.taskName = taskName;
 		this.taskDescription = taskDescription;
 		this.dueDate = dueDate;
 	}
 	
-	public Task(String taskName, String taskDescription, Date dueDate, String tag) {
+	public Task(String taskName, String taskDescription, LocalDate dueDate, String tag) {
 		
 		this(taskName, taskDescription, dueDate);
 		this.tag = tag;
@@ -61,12 +61,12 @@ public class Task {
 		this.finished = isFinished;
 	}
 
-	public Date getDueDate() {
+	public LocalDate getDueDate() {
 		
 		return this.dueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(LocalDate dueDate) {
 		
 		this.dueDate = dueDate;
 	}
@@ -78,7 +78,9 @@ public class Task {
 		info = "Task name: " + this.taskName 
 				+ "\nTask description: " + this.taskDescription
 				+ "\nTag: " + this.tag
-				+ "\nDue date: " + this.dueDate;
+				+ "\nDue date: \n	Day: " + this.dueDate.getDayOfMonth()
+				+ "\n	Month: " + this.dueDate.getMonthValue()
+				+ "\n	Year: " + this.dueDate.getYear();
 		
 		return info;
 	}
