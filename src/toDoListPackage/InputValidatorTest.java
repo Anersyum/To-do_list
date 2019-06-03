@@ -35,4 +35,15 @@ public class InputValidatorTest {
 		
 		assertEquals(true, InputValidator.isEmailValid(email));
 	}
+	
+	@Test
+	public void shouldThrowErrorIfInputNotInRangeAndNotOfTypeInt() {
+		
+		System.out.print("Enter number between 0 and 10: ");
+		int number = InputValidator.returnInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 10);
+		
+		assertEquals(number, number);
+		
+		input.nextLine();
+	}
 }
