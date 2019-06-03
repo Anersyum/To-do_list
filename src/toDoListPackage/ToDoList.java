@@ -51,11 +51,15 @@ public class ToDoList {
 	public void markTaskAsFinished(Task task) {
 
 		task.setFinished(true);
+		
+		System.out.println("The task " + task.getTaskName() + " is marked as finished!");
 	}
 
 	public void markTaskAsUnfinished(Task task) {
 
 		task.setFinished(false);
+		
+		System.out.println("The task " + task.getTaskName() + " is marked as unfinished!");
 	}
 
 	public void sortTasksByDueDate() {

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-	public static void showOptionsMenu() {
+	public static void showMainMenu() {
 		
 		System.out.println("To Do list:" 
 				+ "\n1. Create new to do list" 
@@ -60,6 +60,7 @@ public class Menu {
 		if (appendTag == 1) {
 
 			input.nextLine();
+			
 			System.out.print("Please, enter your tag: ");
 			tag = input.nextLine();
 		}
@@ -95,5 +96,75 @@ public class Menu {
 		selectedList = ToDoListManager.getToDoList(listName);
 
 		selectedList.getTaskList().forEach(task -> System.out.println(task.getTaskInfo() + "\n"));
+	}
+	
+	public static void showUnfinishedTasksMenu(Scanner input) {
+		
+		ToDoList selectedList;
+		String listName = new String();
+
+		System.out.print("Enter the name of the list you want to get the task info: ");
+		listName = input.nextLine();
+		
+		selectedList = ToDoListManager.getToDoList(listName);
+
+		selectedList.getTaskList().forEach(task -> {if (!task.isFinished()) System.out.println(task.getTaskInfo() + "\n");});	
+	}
+	
+	public static void showFinishedTasksMenu(Scanner input) {
+		
+		ToDoList selectedList;
+		String listName = new String();
+
+		System.out.print("Enter the name of the list you want to get the task info: ");
+		listName = input.nextLine();
+		
+		selectedList = ToDoListManager.getToDoList(listName);
+
+		selectedList.getTaskList().forEach(task -> {if (task.isFinished()) System.out.println(task.getTaskInfo() + "\n");});	
+	}
+	
+	public static void showMarkTaskAsFinishedMenu(Scanner input) {
+		
+		ToDoList selectedList;
+		String listName = new String();
+		Task selectedTask;
+		String taskName = new String();
+
+		System.out.print("Enter the name of the list: ");
+		listName = input.nextLine();
+		
+		System.out.print("Enter the name of the task: ");
+		taskName = input.nextLine();
+		
+		selectedList = ToDoListManager.getToDoList(listName);
+		selectedTask = selectedList.getTaskByTaskName(taskName);
+		
+		if (selectedTask.isFinished())
+			System.out.println("You have already marked this task as finished!");
+		else
+			selectedList.markTaskAsFinished(selectedTask);
+	}
+	
+	public static void showMarkTaskAsUnfinishedMenu(Scanner input) {
+		
+		ToDoList selectedList;
+		String listName = new String();
+		Task selectedTask;
+		String taskName = new String();
+
+		System.out.print("Enter the name of the list: ");
+		listName = input.nextLine();
+		
+		System.out.print("Enter the name of the task: ");
+		taskName = input.nextLine();
+		
+		selectedList = ToDoListManager.getToDoList(listName);
+		selectedTask = selectedList.getTaskByTaskName(taskName);
+		
+		if (!selectedTask.isFinished())
+			System.out.println("This task is already marked as unfinished!");
+		else
+			selectedList.markTaskAsUnfinished(selectedTask);
 	}
 }

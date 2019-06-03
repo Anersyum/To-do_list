@@ -78,6 +78,7 @@ public class Task {
 		info = "Task name: " + this.taskName 
 				+ "\nTask description: " + this.taskDescription
 				+ "\nTag: " + this.tag
+				+ "\nIs finished: " + this.finished
 				+ "\nDue date: \n	Day: " + this.dueDate.getDayOfMonth()
 				+ "\n	Month: " + this.dueDate.getMonthValue()
 				+ "\n	Year: " + this.dueDate.getYear();

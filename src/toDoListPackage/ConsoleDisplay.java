@@ -1,11 +1,6 @@
 package toDoListPackage;
 
 public class ConsoleDisplay {
-
-	public static void showConsole() {
-		
-
-	}
 	
 	public static void showLogInText() {
 		
