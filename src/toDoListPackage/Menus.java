@@ -3,11 +3,11 @@ package toDoListPackage;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Menu {
+public class Menus {
 
 	public static void showMainMenu() {
 		
-		System.out.println("To Do list:" 
+		System.out.print("\nTo Do list:" 
 				+ "\n1. Create new to do list" 
 				+ "\n2. Create new task"
 				+ "\n3. Show all tasks"
@@ -15,7 +15,8 @@ public class Menu {
 				+ "\n5. Show finished tasks"
 				+ "\n6. Finish task"
 				+ "\n7. Unfinish task"
-				+ "\n0. Exit");
+				+ "\n0. Exit"
+				+ "\nEnter option: ");
 	}
 	
 	public static void showListCreationMenu(Scanner input) {

@@ -11,8 +11,8 @@ public class ToDoListApp {
 
 		while (chooseMenuOption != 0) {
 
-			Menu.showMainMenu();
-			chooseMenuOption = InputValidator.checkInput(input, 0, 6);
+			Menus.showMainMenu();
+			chooseMenuOption = InputValidator.checkInput(input, 0, 7);
 			
 			useChoice(chooseMenuOption, input);
 		}
@@ -26,37 +26,37 @@ public class ToDoListApp {
 
 		case 1:
 
-			Menu.showListCreationMenu(input);
+			Menus.showListCreationMenu(input);
 			break;
 
 		case 2:
 
-			Menu.showTaskCreationMenu(input);
+			Menus.showTaskCreationMenu(input);
 			break;
 
 		case 3:
 
-			Menu.showTaskInfoMenu(input);
+			Menus.showTaskInfoMenu(input);
 			break;
 			
 		case 4:
 			
-			Menu.showUnfinishedTasksMenu(input);
+			Menus.showUnfinishedTasksMenu(input);
 			break;
 			
 		case 5:
 			
-			Menu.showFinishedTasksMenu(input);
+			Menus.showFinishedTasksMenu(input);
 			break;
 			
 		case 6:
 			
-			Menu.showMarkTaskAsFinishedMenu(input);
+			Menus.showMarkTaskAsFinishedMenu(input);
 			break;
 		
 		case 7:
 			
-			Menu.showMarkTaskAsUnfinishedMenu(input);
+			Menus.showMarkTaskAsUnfinishedMenu(input);
 			break;
 		}
 	}
