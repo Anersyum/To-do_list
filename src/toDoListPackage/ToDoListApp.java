@@ -10,6 +10,7 @@ public class ToDoListApp {
 		int chooseMenuOption = -1;
 		
 		AccountManager.readAccountsFromFile();
+		
 		Menus.showAccountLogInMenu(input);
 		
 		while (chooseMenuOption != 0) {

@@ -75,13 +75,6 @@ public class Menus {
 		else
 			System.out.println("Invalid password!");
 	}
-	
-	public static void showLogInMenu(Scanner input) {
-		
-
-		
-
-	}
 
 	public static void showMainMenu() {
 
