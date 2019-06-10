@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class AccountManager {
 
 	private static ArrayList<Account> listOfAccounts = new ArrayList<Account>();
+	private static File file = new File(System.getProperty("user.dir") + "//accounts//account.txt");
 	
 	public static void createAccount(String userName, String email, String password) {
 		
@@ -23,11 +25,11 @@ public class AccountManager {
 		listOfAccounts.add(account);
 	}
 	
-	public static Account getAccount(String email, String password) {
+	public static Account getAccount(String userName, String password) {
 		
 		for (Account account : listOfAccounts) {
 			
-			if (account.getPassword().equals(password) && account.getEmail().equals(email)) {
+			if (account.getPassword().equals(password) && account.getUserName().equals(userName)) {
 				
 				return account;
 			}
@@ -43,8 +45,6 @@ public class AccountManager {
 	
 	public static void saveAccountsToExternalFile() {
 		
-		File file = new File(System.getProperty("user.dir") + "//accounts//account.txt");
-		
 		try (PrintWriter output = new PrintWriter(file)) {
 			
 			for (Account account : listOfAccounts) {
@@ -59,6 +59,31 @@ public class AccountManager {
 		catch (IOException e) {
 			
 			System.out.println(e.getMessage());
+		}
+	}
+	
+	public static void readAccountsFromFile() {
+		
+		if (file.exists()) {
+			
+			String userName = new String();
+			String email = new String();
+			String password = new String();
+			
+			try (Scanner readFromFile = new Scanner(file)) {
+				
+				while (readFromFile.hasNext()) {
+					
+					userName = readFromFile.next();
+					email = readFromFile.next();
+					password = readFromFile.next();
+					createAccount(userName, email, password);
+				}
+			}
+			catch (IOException e) {
+				
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 }

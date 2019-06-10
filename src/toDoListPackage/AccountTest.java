@@ -42,7 +42,7 @@ public class AccountTest {
 	@Test
 	public void shouldThrowErrorIfLoginIsInvalid() {
 		
-		Account account = LogInManager.logIn("alexilaiho467@gmail.com", "Pas_word");
+		Account account = AccountManager.getAccount("anersyum", "Pas_word");
 		
 		assertEquals("DjChupolini", account.getUserName());
 	}

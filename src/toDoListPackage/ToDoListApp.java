@@ -9,6 +9,7 @@ public class ToDoListApp {
 		Scanner input = new Scanner(System.in);
 		int chooseMenuOption = -1;
 		
+		AccountManager.readAccountsFromFile();
 		Menus.showAccountLogInMenu(input);
 		
 		while (chooseMenuOption != 0) {
