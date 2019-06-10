@@ -8,11 +8,12 @@ public class ToDoListApp {
 
 		Scanner input = new Scanner(System.in);
 		int chooseMenuOption = -1;
-
+		
+		Menus.showAccountLogInMenu(input);
 		while (chooseMenuOption != 0) {
 
 			Menus.showMainMenu();
-			chooseMenuOption = InputValidator.checkInput(input, 0, 7);
+			chooseMenuOption = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 7);
 			
 			useChoice(chooseMenuOption, input);
 		}

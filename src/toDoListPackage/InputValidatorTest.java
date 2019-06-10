@@ -40,7 +40,7 @@ public class InputValidatorTest {
 	public void shouldThrowErrorIfInputNotInRangeAndNotOfTypeInt() {
 		
 		System.out.print("Enter number between 0 and 10: ");
-		int number = InputValidator.returnInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 10);
+		int number = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 10);
 		
 		assertEquals(number, number);
 		

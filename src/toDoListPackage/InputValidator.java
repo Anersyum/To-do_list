@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class InputValidator {
 
-	public static int returnInputIfInputIsInRangeAndIsTypeOfInt(Scanner input, int minInput, int maxInput) {
+	public static int getInputIfInputIsInRangeAndIsTypeOfInt(Scanner input, int minInput, int maxInput) {
 
 		int consoleChoice = 0;
 
@@ -34,7 +34,7 @@ public class InputValidator {
 
 	}
 	
-	public static String returnEmailIfEmailIsValid(Scanner input) {
+	public static String getEmailIfEmailIsValid(Scanner input) {
 		
 		String email = new String();
 		email = input.next();
@@ -59,7 +59,7 @@ public class InputValidator {
 		return false;
 	}
 	
-	public static String returnPasswordIfPasswordIsValid(Scanner input) {
+	public static String getPasswordIfPasswordIsValid(Scanner input) {
 		
 		String password = new String();
 		password = input.next();

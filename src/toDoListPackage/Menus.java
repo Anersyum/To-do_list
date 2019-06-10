@@ -4,6 +4,61 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Menus {
+	
+	public static void showAccountLogInMenu(Scanner input) {
+		
+		int option = 0;
+		String userName = new String();
+		String password = new String();
+		
+		System.out.print("Welcome to the To Do list app." 
+				+ "\nIf you have an account, please input 1."
+				+ "\nIf you don't have an account and wish to create one, please input 0:"
+				+ "\nInput: ");
+		
+		if (option == 0) {
+			
+			showAccountCreationMenu(input);
+		}
+		else if (option == 1) {
+			
+			System.out.print("Please, enter your user name: ");
+			userName = input.next();
+			
+			System.out.print("Please, enter your password: ");
+			password = InputValidator.getPasswordIfPasswordIsValid(input);
+			
+		}
+		
+	}
+	
+	private static void showAccountCreationMenu(Scanner input) {
+		
+		String userName = new String();
+		String email = new String();
+		String password = new String();
+		String passwordCheck = new String();
+		
+		System.out.print("Please, enter your user name: ");
+		userName = input.next();
+		
+		System.out.print("Please, enter your email: ");
+		email = InputValidator.getEmailIfEmailIsValid(input);
+		
+		input.nextLine();
+		
+		System.out.print("Please, enter your password: ");
+		password = InputValidator.getPasswordIfPasswordIsValid(input);
+		System.out.print("Please, enter your password again: ");
+		passwordCheck = InputValidator.getPasswordIfPasswordIsValid(input);
+		
+		if (password.equals(passwordCheck))
+			AccountManager.createAccount(userName, email, password);
+		else 
+			System.out.println("Invalid password!");
+		
+		System.out.println("Your account has been successfuly created!");
+	}
 
 	public static void showMainMenu() {
 		
@@ -16,7 +71,7 @@ public class Menus {
 				+ "\n6. Finish task"
 				+ "\n7. Unfinish task"
 				+ "\n0. Exit"
-				+ "\nEnter option: ");
+				+ "\nInput: ");
 	}
 	
 	public static void showListCreationMenu(Scanner input) {
@@ -45,18 +100,18 @@ public class Menus {
 		System.out.print("Please enter the date that the task is due: \n");
 
 		System.out.print("Day: ");
-		day = InputValidator.checkInput(input, 1, 31);
+		day = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 1, 31);
 
 		System.out.print("Month: ");
-		month = InputValidator.checkInput(input, 1, 12);
+		month = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 1, 12);
 
 		System.out.print("Year: ");
-		year = InputValidator.checkInput(input, 1990, 10000);
+		year = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 1990, 10000);
 
 		dueDate = LocalDate.of(year, month, day);
 
 		System.out.println("Do you want to add a tag to that task? (enter 0 for no | enter 1 for yes)");
-		int appendTag = InputValidator.checkInput(input, 0, 1);
+		int appendTag = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 1);
 
 		if (appendTag == 1) {
 
