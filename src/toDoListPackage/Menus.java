@@ -14,8 +14,10 @@ public class Menus {
 
 		while (account == null) {
 			
-			System.out.print("Welcome to the To Do list app." + "\nIf you have an account, please input 1."
-					+ "\nIf you don't have an account and wish to create one, please input 0:" + "\nInput: ");
+			System.out.print("Welcome to the To Do list app." 
+					+ "\nIf you have an account, please input 1."
+					+ "\nIf you don't have an account and wish to create one, please input 0:" 
+					+ "\nInput: ");
 
 			option = input.nextInt();
 
@@ -39,7 +41,7 @@ public class Menus {
 				} 
 				else {
 					
-					System.out.println("You've successfuly logged in!\n");
+					System.out.println("You've successfully logged in!\n");
 				}
 				
 			}
@@ -70,17 +72,103 @@ public class Menus {
 		System.out.print("Please, enter your password again: ");
 		passwordCheck = InputValidator.getPasswordIfPasswordIsValid(input);
 
-		if (password.equals(passwordCheck))
+		if (password.equals(passwordCheck)) {
+			
 			AccountManager.createAccount(userName, email, password);
+			System.out.println("Your account has been created!\n");
+		}
 		else
 			System.out.println("Invalid password!");
 	}
 
 	public static void showMainMenu() {
 
-		System.out.print("\nTo Do list:" + "\n1. Create new to do list" + "\n2. Create new task" + "\n3. Show all tasks"
-				+ "\n4. Show unfinshed tasks" + "\n5. Show finished tasks" + "\n6. Finish task" + "\n7. Unfinish task"
+		System.out.print("\nTo Do list:" 
+				+ "\n1. Create new to do list" 
+				+ "\n2. Create new task" 
+				+ "\n3. Show all tasks"
+				+ "\n4. Show unfinshed tasks" 
+				+ "\n5. Show finished tasks" 
+				+ "\n6. Finish task" 
+				+ "\n7. Unfinish task"
+				+ "\n8. Edit a task"
 				+ "\n0. Exit" + "\nInput: ");
+	}
+	
+	public static void showEditTaskMenu(Scanner input) {
+		
+		String taskName = new String();
+		String taskDescription = new String();
+		String tag = new String();
+		String listName = new String();
+		ToDoList selectedList;
+		int day, month, year;
+		
+		
+		System.out.print("Enter the name of the list you want to edit: ");
+		listName = input.next();
+		
+		selectedList = ToDoListManager.getToDoList(listName);
+		
+		if (selectedList != null) {
+			
+			System.out.println("Here are the tasks of the " + selectedList.getListName() + " ToDo list:");
+			
+			for (Task task : selectedList.getTaskList()) {
+				
+				System.out.println(task.getTaskInfo() + "\n");
+			}
+			
+			input.nextLine();
+			
+			System.out.print("Please, enter the name of the task you want to edit: ");
+			taskName = input.nextLine();
+			
+			Task task = selectedList.getTaskByTaskName(taskName);
+			
+			if (task != null) {
+			
+				System.out.print("If you don't want to edit a field, leave it empty."
+						+ "\nEdit task name: ");
+				taskName = input.nextLine();
+				taskName = (taskName.isEmpty()) ? task.getTaskName() : taskName;
+				
+				System.out.print("Edit the description of the task: ");
+				taskDescription = input.nextLine();
+				taskDescription = (taskDescription.isEmpty()) ? task.getTaskDescription() : taskDescription;
+				
+				System.out.print("Edit the tag of the task: ");
+				tag = input.nextLine();
+				tag = (tag.isEmpty()) ? task.getTag() : tag;
+				
+				System.out.print("Do you want to edit the due date of the task? (yes = 1, no = 0)");
+				int editDueDate = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 1);
+				
+				if (editDueDate == 1) {
+					
+					System.out.print("Edit the date that the task is due: \n");
+					
+					System.out.print("Day: ");
+					day = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 1, 31);
+					
+					System.out.print("Month: ");
+					month = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 1, 12);
+			
+					System.out.print("Year: ");
+					year = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 1990, 10000);
+			
+					task.setDueDate(LocalDate.of(year, month, day));
+				}
+				
+				task.setTaskName(taskName);
+				task.setTaskDescription(taskDescription);
+				task.setTag(tag);
+				
+				System.out.println("Task successfully edited!");
+			}
+		} 
+		else 
+			System.out.println("The list doesn't exist!");
 	}
 
 	public static void showListCreationMenu(Scanner input) {
@@ -128,6 +216,7 @@ public class Menus {
 
 			System.out.print("Please, enter your tag: ");
 			tag = input.nextLine();
+			
 		} else
 			input.nextLine();
 

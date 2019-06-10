@@ -16,8 +16,6 @@ public class AccountManager {
 		Account newAccout = new Account(userName, email, password);
 		
 		addAccountToAccountsList(newAccout);
-		
-		System.out.println("Your account has been created!\n");
 	}
 	
 	private static void addAccountToAccountsList(Account account) {

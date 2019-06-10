@@ -16,7 +16,7 @@ public class ToDoListApp {
 		while (chooseMenuOption != 0) {
 
 			Menus.showMainMenu();
-			chooseMenuOption = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 7);
+			chooseMenuOption = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 8);
 			
 			useChoice(chooseMenuOption, input);
 		}
@@ -63,6 +63,11 @@ public class ToDoListApp {
 		case 7:
 			
 			Menus.showMarkTaskAsUnfinishedMenu(input);
+			break;
+			
+		case 8:
+			
+			Menus.showEditTaskMenu(input);
 			break;
 		}
 	}
