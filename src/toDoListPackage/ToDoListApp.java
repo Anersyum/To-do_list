@@ -10,6 +10,7 @@ public class ToDoListApp {
 		int chooseMenuOption = -1;
 		
 		Menus.showAccountLogInMenu(input);
+		
 		while (chooseMenuOption != 0) {
 
 			Menus.showMainMenu();
@@ -17,6 +18,8 @@ public class ToDoListApp {
 			
 			useChoice(chooseMenuOption, input);
 		}
+		
+		AccountManager.saveAccountsToExternalFile();
 	}
 	
 	private static void useChoice(int chooseMenuOption, Scanner input) {

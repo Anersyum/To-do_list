@@ -7,7 +7,7 @@ public class Menus {
 	
 	public static void showAccountLogInMenu(Scanner input) {
 		
-		int option = 0;
+		int option;
 		String userName = new String();
 		String password = new String();
 		
@@ -15,6 +15,8 @@ public class Menus {
 				+ "\nIf you have an account, please input 1."
 				+ "\nIf you don't have an account and wish to create one, please input 0:"
 				+ "\nInput: ");
+		
+		option = input.nextInt();
 		
 		if (option == 0) {
 			
@@ -49,6 +51,9 @@ public class Menus {
 		
 		System.out.print("Please, enter your password: ");
 		password = InputValidator.getPasswordIfPasswordIsValid(input);
+		
+		input.nextLine();
+		
 		System.out.print("Please, enter your password again: ");
 		passwordCheck = InputValidator.getPasswordIfPasswordIsValid(input);
 		
@@ -56,8 +61,6 @@ public class Menus {
 			AccountManager.createAccount(userName, email, password);
 		else 
 			System.out.println("Invalid password!");
-		
-		System.out.println("Your account has been successfuly created!");
 	}
 
 	public static void showMainMenu() {

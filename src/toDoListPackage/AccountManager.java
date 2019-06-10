@@ -1,5 +1,8 @@
 package toDoListPackage;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class AccountManager {
@@ -38,4 +41,22 @@ public class AccountManager {
 		return listOfAccounts;
 	}
 	
+	public static void saveAccountsToExternalFile() {
+		
+		File file = new File(System.getProperty("user.dir") + "//accounts//account.txt");
+		
+		try (PrintWriter output = new PrintWriter(file)) {
+			
+			for (Account account : listOfAccounts) {
+				
+				output.print(account.getUserName());
+				output.print(account.getEmail());
+				output.print(account.getPassword());
+			}
+		}
+		catch (IOException e) {
+			
+			System.out.println(e.getMessage());
+		}
+	}
 }
