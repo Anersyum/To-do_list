@@ -49,10 +49,12 @@ public class AccountManager {
 			
 			for (Account account : listOfAccounts) {
 				
-				output.print(account.getUserName());
-				output.print(account.getEmail());
-				output.print(account.getPassword());
+				output.print(account.getUserName() + " ");
+				output.print(account.getEmail() + " ");
+				output.println(account.getPassword());
 			}
+			
+			System.out.println("The changes were saved!");
 		}
 		catch (IOException e) {
 			
