@@ -34,7 +34,7 @@ public class Menus {
 				password = InputValidator.getPasswordIfPasswordIsValid(input);
 				
 				AccountManager.logIn(userName, password);
-				account = AccountManager.getAccount(userName, password);
+				account = AccountManager.getAccount();
 
 				if (account == null) {
 
@@ -231,6 +231,8 @@ public class Menus {
 				selectedList.createNewTask(taskName, taskDescription, dueDate, tag);
 			else
 				selectedList.createNewTask(taskName, taskDescription, dueDate);
+			
+			System.out.println("The task has been created!");
 		} else
 			System.out.println("\nThe list is not valid!");
 	}

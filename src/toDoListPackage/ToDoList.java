@@ -94,8 +94,6 @@ public class ToDoList {
 		Task task = new Task(taskName, taskDescription, dueDate);
 		
 		this.tasks.add(task);
-		
-		System.out.println("Task successfully added!\n");
 	}
 	
 	public void createNewTask(String taskName, String taskDescription, LocalDate dueDate, String tag) {
@@ -103,7 +101,5 @@ public class ToDoList {
 		Task task = new Task(taskName, taskDescription, dueDate, tag);
 		
 		this.tasks.add(task);
-		
-		System.out.println("Task successfully added!\n");
 	}
 }

@@ -50,7 +50,7 @@ public class AccountManager {
 		createAccountFromFile(userName, password);
 	}
 
-	public static Account getAccount(String userName, String password) {
+	public static Account getAccount() {
 
 		return openedAccount;
 	}
