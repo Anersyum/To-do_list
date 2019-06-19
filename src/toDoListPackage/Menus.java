@@ -33,6 +33,7 @@ public class Menus {
 				System.out.print("Please, enter your password: ");
 				password = InputValidator.getPasswordIfPasswordIsValid(input);
 				
+				AccountManager.logIn(userName, password);
 				account = AccountManager.getAccount(userName, password);
 
 				if (account == null) {
@@ -74,8 +75,7 @@ public class Menus {
 
 		if (password.equals(passwordCheck)) {
 			
-			AccountManager.createAccount(userName, email, password);
-			System.out.println("Your account has been created!\n");
+			AccountManager.saveAccountToExternalFile(new Account(userName, email, password));
 		}
 		else
 			System.out.println("Invalid password!");

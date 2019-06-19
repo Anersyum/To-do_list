@@ -1,6 +1,8 @@
 package toDoListPackage;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -9,79 +11,102 @@ import java.util.Scanner;
 public class AccountManager {
 
 	private static ArrayList<Account> listOfAccounts = new ArrayList<Account>();
-	private static File file = new File(System.getProperty("user.dir") + "//accounts//account.txt");
-	
-	public static void createAccount(String userName, String email, String password) {
-		
-		Account newAccout = new Account(userName, email, password);
-		
-		addAccountToAccountsList(newAccout);
-	}
-	
-	private static void addAccountToAccountsList(Account account) {
-		
-		listOfAccounts.add(account);
-	}
-	
-	public static Account getAccount(String userName, String password) {
-		
-		for (Account account : listOfAccounts) {
-			
-			if (account.getPassword().equals(password) && account.getUserName().equals(userName)) {
+	private static Account openedAccount = null;
+	private static File accountsFile = new File(System.getProperty("user.dir") + "//accounts//account.txt");
+
+	private static void createAccountFromFile(String name, String pass) {
+
+		if (accountsFile.exists()) {
+
+			try (Scanner readFromFile = new Scanner(accountsFile)) {
 				
-				return account;
+				String userName = new String();
+				String email = new String();
+				String password = new String();
+				
+				while (readFromFile.hasNext()) {
+
+					userName = readFromFile.next();
+					email = readFromFile.next();
+					password = readFromFile.next();
+					
+					if (userName.equals(name) && password.equals(pass)) {
+						
+						openedAccount = new Account(userName, email, password);
+						
+						return;
+					}
+				}
+			} catch (IOException e) {
+
+				System.out.println(e.getMessage());
 			}
 		}
-		
-		return null;
 	}
 	
-	public static ArrayList<Account> getAccountList() {
+	public static void logIn(String userName, String password) {
 		
+		
+		createAccountFromFile(userName, password);
+	}
+
+	public static Account getAccount(String userName, String password) {
+
+		return openedAccount;
+	}
+
+	public static ArrayList<Account> getAccountList() {
+
 		return listOfAccounts;
 	}
-	
-	public static void saveAccountsToExternalFile() {
-		
-		try (PrintWriter output = new PrintWriter(file)) {
-			
-			for (Account account : listOfAccounts) {
+
+	public static void saveAccountToExternalFile(Account createdAccount) {
+
+		try (PrintWriter output = new PrintWriter(new BufferedWriter(new FileWriter(accountsFile.getPath(), true)))) {
+
+			if (!doesAccountExist(createdAccount.getUserName())) {
 				
-				output.print(account.getUserName() + " ");
-				output.print(account.getEmail() + " ");
-				output.println(account.getPassword());
+				output.append(createdAccount.getUserName() + " ");
+				output.append(createdAccount.getEmail() + " ");
+				output.append(createdAccount.getPassword());
+				output.println();
+				
+				System.out.println("Your account has been created!");
 			}
-			
-			System.out.println("The changes were saved!");
-		}
-		catch (IOException e) {
-			
+			else {
+				
+				System.out.println("That account already exists!");
+			}
+		} catch (IOException e) {
+
 			System.out.println(e.getMessage());
 		}
 	}
 	
-	public static void readAccountsFromFile() {
-		
-		if (file.exists()) {
-			
-			String userName = new String();
-			String email = new String();
-			String password = new String();
-			
-			try (Scanner readFromFile = new Scanner(file)) {
+	private static boolean doesAccountExist(String name) {
+
+		if (accountsFile.exists()) {
+
+			try (Scanner readFromFile = new Scanner(accountsFile)) {
+				
+				String userName = new String();
 				
 				while (readFromFile.hasNext()) {
-					
+
 					userName = readFromFile.next();
-					email = readFromFile.next();
-					password = readFromFile.next();
-					createAccount(userName, email, password);
+					
+					if (userName.equals(name)) {
+						
+						return true;
+					}
 				}
-			}
-			catch (IOException e) {
-				
+			} catch (IOException e) {
+
 				System.out.println(e.getMessage());
+				
 			}
 		}
+		
+		return false;
 	}
 }
