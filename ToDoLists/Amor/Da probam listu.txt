@@ -1,0 +1,10 @@
+Proba liste
+Pokusaj da se lista proba
+tagic
+true
+2019-11-14
+Drugi pokusaj
+Pousaj opet
+taggg
+false
+2010-01-01
