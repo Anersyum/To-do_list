@@ -19,7 +19,7 @@ public class Menus {
 					+ "\nIf you don't have an account and wish to create one, please input 0:" 
 					+ "\nInput: ");
 
-			option = input.nextInt();
+			option = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 1);
 
 			if (option == 0) {
 
@@ -177,6 +177,8 @@ public class Menus {
 		String listName = new String(input.nextLine());
 
 		ToDoListManager.createNewToDoList(listName);
+		
+		System.out.println("Your list has been created!\n");
 	}
 
 	public static void showTaskCreationMenu(Scanner input) {
@@ -248,8 +250,11 @@ public class Menus {
 		System.out.println();
 
 		selectedList = ToDoListManager.getToDoList(listName);
-
-		selectedList.getTaskList().forEach(task -> System.out.println(task.getTaskInfo() + "\n"));
+		
+		if (selectedList != null)
+			selectedList.getTaskList().forEach(task -> System.out.println(task.getTaskInfo() + "\n"));
+		else
+			System.out.println("That list doesn't exist!");
 	}
 
 	public static void showUnfinishedTasksMenu(Scanner input) {
@@ -262,10 +267,12 @@ public class Menus {
 
 		selectedList = ToDoListManager.getToDoList(listName);
 
-		selectedList.getTaskList().forEach(task -> {
-			if (!task.isFinished())
-				System.out.println(task.getTaskInfo() + "\n");
-		});
+		if (selectedList != null)
+			selectedList.getTaskList().forEach(task -> {
+				if (!task.isFinished())
+					System.out.println(task.getTaskInfo() + "\n");});
+		else
+			System.out.println("That list doesn't exist!");
 	}
 
 	public static void showFinishedTasksMenu(Scanner input) {
@@ -278,10 +285,12 @@ public class Menus {
 
 		selectedList = ToDoListManager.getToDoList(listName);
 
-		selectedList.getTaskList().forEach(task -> {
-			if (task.isFinished())
-				System.out.println(task.getTaskInfo() + "\n");
-		});
+		if (selectedList != null)
+			selectedList.getTaskList().forEach(task -> {
+				if (task.isFinished())
+					System.out.println(task.getTaskInfo() + "\n");});
+		else
+			System.out.println("That list doesn't exist!");
 	}
 
 	public static void showMarkTaskAsFinishedMenu(Scanner input) {
