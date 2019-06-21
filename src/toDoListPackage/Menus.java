@@ -1,7 +1,6 @@
 package toDoListPackage;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menus {
@@ -9,24 +8,26 @@ public class Menus {
 	public static void showAccountLogInMenu(Scanner input) {
 
 		int option;
-		String userName = new String();
-		String password = new String();
 		Account account = null;
 
 		while (account == null) {
 			
-			System.out.print("Welcome to the To Do list app." 
+			System.out.print("Welcome to the To Do list app. To exit the log in menu, please input 2." 
 					+ "\nIf you have an account, please input 1."
 					+ "\nIf you don't have an account and wish to create one, please input 0:" 
 					+ "\nInput: ");
 
-			option = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 1);
+			option = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 2);
 
 			if (option == 0) {
 
 				showAccountCreationMenu(input);
 				
-			} else if (option == 1) {
+			}
+			else if (option == 1) {
+				
+				String userName = new String();
+				String password = new String();
 				
 				System.out.print("Please, enter your user name: ");
 				userName = input.next();
@@ -36,7 +37,7 @@ public class Menus {
 				
 				AccountManager.logIn(userName, password);
 				account = AccountManager.getAccount();
-
+				
 				if (account == null) {
 
 					System.out.println("This account doesn't exist!");
@@ -47,8 +48,12 @@ public class Menus {
 				}
 				
 			}
+			else {
+				
+				System.out.println("You closed the app.");
+				System.exit(1);
+			}
 		}
-
 	}
 
 	private static void showAccountCreationMenu(Scanner input) {
@@ -105,6 +110,7 @@ public class Menus {
 		String tag = new String();
 		String listName = new String();
 		ToDoList selectedList;
+		LocalDate dueDate;
 		int day, month, year;
 		
 		
@@ -147,6 +153,8 @@ public class Menus {
 				System.out.print("Do you want to edit the due date of the task? (yes = 1, no = 0)");
 				int editDueDate = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 1);
 				
+				dueDate = task.getDueDate();
+				
 				if (editDueDate == 1) {
 					
 					System.out.print("Edit the date that the task is due: \n");
@@ -160,12 +168,10 @@ public class Menus {
 					System.out.print("Year: ");
 					year = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 1990, 10000);
 			
-					task.setDueDate(LocalDate.of(year, month, day));
+					dueDate = LocalDate.of(year, month, day);
 				}
 				
-				task.setTaskName(taskName);
-				task.setTaskDescription(taskDescription);
-				task.setTag(tag);
+				selectedList.editTask(taskName, taskDescription, dueDate, tag);
 				
 				System.out.println("Task successfully edited!");
 			}
@@ -227,7 +233,13 @@ public class Menus {
 
 		System.out.print("Lastly, enter the name of the To Do list you want to add this task to: ");
 		listName = input.nextLine();
-
+		
+		taskCreation(listName, taskName, taskDescription, dueDate, tag, appendTag);
+	}
+	
+	private static void taskCreation(String listName, String taskName, String taskDescription, LocalDate dueDate, String tag,
+				int appendTag) {
+		
 		ToDoList selectedList = ToDoListManager.getToDoList(listName);
 
 		if (selectedList != null) {
@@ -237,12 +249,12 @@ public class Menus {
 			else
 				selectedList.createNewTask(taskName, taskDescription, dueDate);
 			
-			System.out.println("The task has been created!");
+			System.out.println("\nThe task has been created!");
 		} else
 			System.out.println("\nThe list is not valid!");
 	}
 
-	public static void showTaskInfoMenu(Scanner input) {
+	public static void showTasksInfoMenu(Scanner input) {
 
 		ToDoList selectedList;
 		String listName = new String();
@@ -255,7 +267,7 @@ public class Menus {
 		selectedList = ToDoListManager.getToDoList(listName);
 		
 		if (selectedList != null)
-			selectedList.getTaskList().forEach(task -> System.out.println(task.getTaskInfo() + "\n"));
+			selectedList.showTasksInfo();
 		else
 			System.out.println("That list doesn't exist!");
 	}
@@ -271,9 +283,7 @@ public class Menus {
 		selectedList = ToDoListManager.getToDoList(listName);
 
 		if (selectedList != null)
-			selectedList.getTaskList().forEach(task -> {
-				if (!task.isFinished())
-					System.out.println(task.getTaskInfo() + "\n");});
+			selectedList.showUnfinishedTasksInfo();
 		else
 			System.out.println("That list doesn't exist!");
 	}
@@ -289,9 +299,7 @@ public class Menus {
 		selectedList = ToDoListManager.getToDoList(listName);
 
 		if (selectedList != null)
-			selectedList.getTaskList().forEach(task -> {
-				if (task.isFinished())
-					System.out.println(task.getTaskInfo() + "\n");});
+			selectedList.showFinishedTasksInfo();
 		else
 			System.out.println("That list doesn't exist!");
 	}
@@ -340,12 +348,9 @@ public class Menus {
 			selectedList.markTaskAsUnfinished(selectedTask);
 	}
 	
-	public static void showToDoListsFromAccount() {
-		
-		ArrayList<ToDoList> allLists = ToDoListManager.getToDoLists();
+	public static void showAccountToDoListsMenu() {
 		
 		System.out.println("Your lists are:\n");
-		allLists.forEach(list -> {System.out.println(list.getListName());});
-		System.out.println();
+		AccountManager.showToDoListsFromOpenedAccount();
 	}
 }

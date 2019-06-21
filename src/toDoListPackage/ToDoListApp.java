@@ -8,25 +8,30 @@ public class ToDoListApp {
 
 		Scanner input = new Scanner(System.in);
 		int chooseMenuOption = -1;
-		
-		Menus.showAccountLogInMenu(input);
-		ToDoListManager.loadToDoListsFromFile();
-		
-		while (chooseMenuOption != 0) {
 
-			Menus.showMainMenu();
-			chooseMenuOption = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 9);
+		while (true) {
 			
-			useChoice(chooseMenuOption, input);
+			Menus.showAccountLogInMenu(input);
+			ToDoListManager.loadToDoListsFromFile();
+
+			while (chooseMenuOption != 0) {
+
+				Menus.showMainMenu();
+				chooseMenuOption = InputValidator.getInputIfInputIsInRangeAndIsTypeOfInt(input, 0, 9);
+
+				useChoice(chooseMenuOption, input);
+			}
+
+			ToDoListManager.saveListToAccountExternalFile();
+			
+			chooseMenuOption = -1;
 		}
-		
-		ToDoListManager.saveListToAccountExternalFile();
 	}
-	
+
 	private static void useChoice(int chooseMenuOption, Scanner input) {
-		
+
 		input.nextLine();
-		
+
 		switch (chooseMenuOption) {
 
 		case 1:
@@ -41,37 +46,37 @@ public class ToDoListApp {
 
 		case 3:
 
-			Menus.showTaskInfoMenu(input);
+			Menus.showTasksInfoMenu(input);
 			break;
-			
+
 		case 4:
-			
+
 			Menus.showUnfinishedTasksMenu(input);
 			break;
-			
+
 		case 5:
-			
+
 			Menus.showFinishedTasksMenu(input);
 			break;
-			
+
 		case 6:
-			
+
 			Menus.showMarkTaskAsFinishedMenu(input);
 			break;
-		
+
 		case 7:
-			
+
 			Menus.showMarkTaskAsUnfinishedMenu(input);
 			break;
-			
+
 		case 8:
-			
+
 			Menus.showEditTaskMenu(input);
 			break;
-		
+
 		case 9:
-			
-			Menus.showToDoListsFromAccount();
+
+			Menus.showAccountToDoListsMenu();
 			break;
 		}
 	}
