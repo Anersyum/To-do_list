@@ -1,6 +1,7 @@
 package toDoListPackage;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menus {
@@ -92,7 +93,9 @@ public class Menus {
 				+ "\n6. Finish task" 
 				+ "\n7. Unfinish task"
 				+ "\n8. Edit a task"
-				+ "\n0. Exit" + "\nInput: ");
+				+ "\n9. Show all to do lists"
+				+ "\n0. Exit" 
+				+ "\nInput: ");
 	}
 	
 	public static void showEditTaskMenu(Scanner input) {
@@ -335,5 +338,14 @@ public class Menus {
 			System.out.println("This task is already marked as unfinished!");
 		else
 			selectedList.markTaskAsUnfinished(selectedTask);
+	}
+	
+	public static void showToDoListsFromAccount() {
+		
+		ArrayList<ToDoList> allLists = ToDoListManager.getToDoLists();
+		
+		System.out.println("Your lists are:\n");
+		allLists.forEach(list -> {System.out.println(list.getListName());});
+		System.out.println();
 	}
 }
